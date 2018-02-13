@@ -47,8 +47,7 @@ if len(schedule)>1:
 		text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'	
 else:
 	text='Завтра немає пар юху'	
-@bot.message_handler(commands=['start'])
-def start(message):
-		sent=bot.send_message(355875782,text)
+if now.hour==18:
+	sent=bot.send_message(355875782,text)
 
 bot.polling()	
