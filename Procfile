@@ -1,2 +1,2 @@
 web: python TelegramBot.py
-web: python brouser.py
+worker: python brouser.py
