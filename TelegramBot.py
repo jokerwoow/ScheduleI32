@@ -54,4 +54,4 @@ while True:
 	if now.minute==33:
 		botMessage(brous())
 		sleep(6000)	
-bot.polling()	
+
