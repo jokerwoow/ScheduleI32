@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import telebot 
 import datetime
-
+from time import sleep
 TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
 
