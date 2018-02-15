@@ -51,7 +51,7 @@ def brous():
 def botMessage(text):	
 	bot.send_message(355875782,text)
 while True:	
-	if now.hour==16:
+	if now.minute==11:
 		botMessage(brous())
-		sleep(6000)	
-
+		sleep(3000)	
+bot.polling()	
