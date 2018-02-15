@@ -45,7 +45,7 @@ def brous():
 		for i in range(int(a/3)):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'	
 	else:
-		text='Завтра немає пар юху :+1:'	
+		text='Завтра немає пар юху 	U+1F44D'	
 	return text	
 def botMessage(text):	
 	bot.send_message(355875782,text)
