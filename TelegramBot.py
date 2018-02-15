@@ -12,7 +12,6 @@ bot=telebot.TeleBot(TOKEN)
 
 now = datetime.datetime.now()
 today=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-z=12
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
 def brous():
 	response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':today,'btn btn-success':'true','faculty':'1002'})
@@ -53,7 +52,6 @@ def botMessage(text):
 while True:	
 	if now.minute==36:
 		botMessage(brous())
-		sleep(10)	
-	else:
-		z=z*0	
+	sleep(10)	
+	
 bot.polling()	
