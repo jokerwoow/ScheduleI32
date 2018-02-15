@@ -25,7 +25,7 @@ def brous():
 	things=[]
 	
 	text=''
-	
+	z=12
 	divTag = soup.find("div", {"class": "container"})
 	
 	for tag in divTag:
@@ -51,6 +51,9 @@ def brous():
 def botMessage(text):	
 	bot.send_message(355875782,text)
 while True:	
-	if now.minute==29:
-		botMessage(brous())	
+	if now.minute==35:
+		botMessage(brous())
+		sleep(10)	
+	else:
+		z=z*0	
 bot.polling()	
