@@ -54,6 +54,6 @@ def botMessage(text):
 while True:	
 	yep= datetime.datetime.now()
 	hour=yep.hour
-	if hour==23:
+	if hour==16:
 		botMessage(brous())		
 	sleep(3600)	
