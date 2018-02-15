@@ -45,13 +45,13 @@ def brous():
 		for i in range(int(a/3)):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'	
 	else:
-		text='Завтра немає пар юху 	👍\n Або сайт накрився 👎'	
+		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
 def botMessage(text):	
 	bot.send_message(355875782,text)
 while True:	
 	yep= datetime.datetime.now()
 	hour=yep.hour
-	if hour==22:
+	if hour==16:
 		botMessage(brous())		
 	sleep(3600)	
