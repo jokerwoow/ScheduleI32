@@ -8,13 +8,10 @@ TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
 
 #@bot.message_handler(content_types=["text"])
-
-
-now = datetime.datetime.now()
-today=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+#-226511191
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
-def brous():
-	response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':today,'btn btn-success':'true','faculty':'1002'})
+def brous(day):
+	response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
 	text=str(response.text.encode('iso-8859-1').decode('cp1251'))
 	soup = BeautifulSoup(text,'html.parser')
 	
@@ -48,12 +45,17 @@ def brous():
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
 def botMessage(text):	
-	bot.send_message(-226511191,text)
-	
+	bot.send_message(355875782,text)
+@bot.message_handler(command=["today"])
+def today(message):
+	now= datetime.datetime.now()
+	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+	bot.send_message(355875782,brous(day))
 
 while True:	
-	yep= datetime.datetime.now()
-	hour=yep.hour
-	if hour==16:
-		botMessage(brous())		
+	now= datetime.datetime.now()
+	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+	hour=now.hour
+	if hour==17:
+		botMessage(brous(day))		
 	sleep(3600)	
