@@ -31,7 +31,7 @@ def brous(day):
 	a=len(schedule)        
 	size=a-(a/3)
 	n=0
-	if len(schedule)>1:
+	if len(schedule)>and datetime.datetime.now().weekday()<=4:
 		for i in range(len(schedule)-int(size)):
 			numb.append(schedule[n])
 			n=n+1
@@ -40,7 +40,9 @@ def brous(day):
 			things.append(schedule[n])
 			n=n+1
 		for i in range(int(a/3)):
-			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'	
+			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
+	elif datetime.datetime.now().weekday()>4:	
+		text='Вихідні хулі'		
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
