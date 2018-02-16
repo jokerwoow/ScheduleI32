@@ -70,10 +70,4 @@ def tommorrow(message):
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()+1
 	bot.send_message(355875782,brous(day,weekDay))	
-@bot.message_handler(commands = ['url'])
-def url(message):
-    markup = types.InlineKeyboardMarkup()
-    btn_my_site= types.InlineKeyboardButton(text='Наш сайт', url='https://habrahabr.ru')
-    markup.add(btn_my_site)
-    bot.send_message(355875782, "Нажми на кнопку и перейди на наш сайт.", reply_markup = markup)
 bot.polling()    
