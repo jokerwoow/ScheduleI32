@@ -71,7 +71,7 @@ def tommorrow(message):
 	weekDay=now.weekday()+1
 	bot.send_message(355875782,brous(day,weekDay))	
 @bot.message_handler(commands=['time'])
-	schedule='1 пара 9:00-10:20\n2 пара 10:30-11:50\n3 пара 12:15-13:35\n4 пара 13:50-15:10\n5 пара 15:25-16:45\n6 пара 16:55-18:15'
+	schedule='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
 	bot.send_message(355875782,schedule)	
 @bot.message_handler(commands=['help'])
 def help(message):
