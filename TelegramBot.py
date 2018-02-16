@@ -59,4 +59,4 @@ def botMessage(text):
 def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-	bot.send_message(355875782,brous(day))	
+	bot.send_message(355875782,'fadsf')	
