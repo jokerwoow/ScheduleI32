@@ -55,9 +55,9 @@ def botMessage(text):
 	if hour==17:
 		botMessage(brous(day))		
 	sleep(3600)	'''
-@bot.message_handler(command=['start'])
+@bot.message_handler(commands=['today'])
 def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	bot.send_message(355875782,'fadsf')	
-bot.polling()	
+	
