@@ -10,7 +10,7 @@ bot=telebot.TeleBot(TOKEN)
 #@bot.message_handler(content_types=["text"])
 #-226511191
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
-def brous(day):
+def brous(day,weekDay):
 	response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
 	text=str(response.text.encode('iso-8859-1').decode('cp1251'))
 	soup = BeautifulSoup(text,'html.parser')
@@ -31,7 +31,7 @@ def brous(day):
 	a=len(schedule)        
 	size=a-(a/3)
 	n=0
-	if len(schedule)>1 and datetime.datetime.now().weekday()+1<=4:
+	if len(schedule)>1 and weekDay<=4:
 		for i in range(len(schedule)-int(size)):
 			numb.append(schedule[n])
 			n=n+1
@@ -41,7 +41,7 @@ def brous(day):
 			n=n+1
 		for i in range(int(a/3)):
 			text=text+'Розклад на'+day+'\n'+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
-	elif datetime.datetime.now().weekday()+1>4:	
+	elif weekDay>4:	
 		text='Завтра вихідні хулі'		
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
@@ -60,5 +60,6 @@ def botMessage(text):
 def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
-	bot.send_message(355875782,brous(day))	
+	weekDay=now.weekday()
+	bot.send_message(355875782,brous(day,weekDay))	
 bot.polling()    
