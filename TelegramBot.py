@@ -43,7 +43,7 @@ def brous(day,weekDay):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
 		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text	
 	elif weekDay>4:	
-		text='Завтра вихідні хулі'		
+		text='Завтра вихідний хулі'		
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
@@ -70,4 +70,9 @@ def tommorrow(message):
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()+1
 	bot.send_message(355875782,brous(day,weekDay))	
+@bot.message_handler(commands=['time'])
+	bot.send_message(355875782,'1 пара 9:00-10:20\n2 пара 10:30-11:50\n3 пара12:15-13:35\n4 пара 13:50-15:10\n5 пара 15:25-16:45\n6 пара 16:55-18:15')	
+@bot.message_handler(commands=['help'])
+def help(message):
+	bot.send_message(355875782,'/td-розклад на сьогодні\n/tm-розклад на завтра\n/time-розклад пар\n/help-догадаєтесь самі👍')	
 bot.polling()    
