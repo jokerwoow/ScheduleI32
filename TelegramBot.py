@@ -57,10 +57,18 @@ def botMessage(text):
 	if hour==17:
 		botMessage(brous(day))	
 	sleep(3600)	'''
-@bot.message_handler(commands=['today'])
+@bot.message_handler(commands=['td'])
 def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()
 	bot.send_message(355875782,brous(day,weekDay))	
+	
+@bot.message_handler(commands=['tm'])
+def tommorrow(message):
+	now= datetime.datetime.now()
+	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+	weekDay=now.weekday()+1
+	bot.send_message(355875782,brous(day,weekDay))	
+
 bot.polling()    
