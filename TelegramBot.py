@@ -48,13 +48,13 @@ def botMessage(text):
 	bot.send_message(355875782,text)
 
 
-'''while True:	
+while True:	
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	hour=now.hour
 	if hour==17:
 		botMessage(brous(day))		
-	sleep(3600)	'''
+	sleep(3600)	
 @bot.message_handler(commands=['today'])
 def today(message):
 	now= datetime.datetime.now()
