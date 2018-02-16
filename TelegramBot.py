@@ -40,7 +40,7 @@ def brous(day):
 			things.append(schedule[n])
 			n=n+1
 		for i in range(int(a/3)):
-			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
+			text=text+'Розклад на'+day+'\n'+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
 	elif datetime.datetime.now().weekday()+1>4:	
 		text='Завтра вихідні хулі'		
 	else:
@@ -59,6 +59,6 @@ def botMessage(text):
 @bot.message_handler(commands=['today'])
 def today(message):
 	now= datetime.datetime.now()
-	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 	bot.send_message(355875782,brous(day))	
 bot.polling()    
