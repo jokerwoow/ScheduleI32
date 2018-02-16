@@ -31,7 +31,7 @@ def brous(day):
 	a=len(schedule)        
 	size=a-(a/3)
 	n=0
-	if len(schedule)>and datetime.datetime.now().weekday()<=4:
+	if len(schedule)>1 and datetime.datetime.now().weekday()<=4:
 		for i in range(len(schedule)-int(size)):
 			numb.append(schedule[n])
 			n=n+1
