@@ -47,10 +47,11 @@ def brous(day,weekDay):
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
-def botMessage(text):	
-	bot.send_message(355875782,text)
+#Автовідправка 
+'''def botMessage(text):	
+	bot.send_message(-226511191,text)
 
-'''while True:	
+while True:	
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	hour=now.hour
@@ -62,25 +63,27 @@ def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()
-	bot.send_message(355875782,brous(day,weekDay))	
+	bot.send_message(-226511191,brous(day,weekDay))	
 
 @bot.message_handler(commands=['tm'])
 def tommorrow(message):
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()+1
-	bot.send_message(355875782,brous(day,weekDay))	
+	bot.send_message(-226511191,brous(day,weekDay))	
 @bot.message_handler(commands=['time'])
 def time(message):
 	schedule='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
-	bot.send_message(355875782,schedule)	
+	bot.send_message(-226511191,schedule)	
 @bot.message_handler(commands=['help'])
 def help(message):
-	bot.send_message(355875782,'/td-розклад на сьогодні\n/tm-розклад на завтра\n/time-розклад пар\n/help-догадаєтесь самі👍')	
+	bot.send_message(-226511191,'/td-розклад на сьогодні\n/tm-розклад на завтра\n/time-розклад пар\n/help-догадаєтесь самі👍')	
 @bot.message_handler(content_types=["text"])
 def text(message):
 	mat=['підр','підар','ска','сука','гандон','гондон','хуй','хуйлобан','бля','блять']
 	for i in mat:
 		if i in message.text:
-			bot.send_message(355875782,'сам ти '+i+' неможна матюкатись\n подивисі на него\n'+message.from_user.first_name+' '+message.from_user.last_name +' ти шо бик?')
+			bot.send_message(-226511191,'сам ти '+i+' неможна матюкатись\n подивисі на него\n'+message.from_user.first_name+' '+message.from_user.last_name +' ти шо бик?')
+	if message.text=='найс':
+			bot.send_message(-226511191,'та да ')
 bot.polling()    
