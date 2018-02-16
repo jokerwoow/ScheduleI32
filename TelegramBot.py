@@ -82,5 +82,5 @@ def text(message):
 	mat=['підр','підар','ска','сука','гандон','гондон','хуй','хуйлобан','бля','блять']
 	for i in mat:
 		if i in message.text:
-			bot.send_message(355875782,'сам ти '+i+' неможна матюкатись\n подивисі на него\n'+message.from_user.first_name+' '+message.from_user.last_name +'ти шо бик?')
+			bot.send_message(355875782,'сам ти '+i+' неможна матюкатись\n подивисі на него\n'+message.from_user.first_name+' '+message.from_user.last_name +' ти шо бик?')
 bot.polling()    
