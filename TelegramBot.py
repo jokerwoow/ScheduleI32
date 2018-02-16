@@ -46,17 +46,18 @@ def brous(day):
 	return text	
 def botMessage(text):	
 	bot.send_message(355875782,text)
-@bot.message_handler(commands=['today'])
-def today(message):
-	now= datetime.datetime.now()
-	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-	bot.send_message(355875782,'fadsf')	
+
 while True:	
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	hour=now.hour
 	if hour==17:
-		botMessage(brous(day))		
+		botMessage(brous(day))	
+	@bot.message_handler(commands=['today'])
+	def today(message):
+		now= datetime.datetime.now()
+		day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+		bot.send_message(355875782,'fadsf')			
 	sleep(3600)	
 
 bot.polling()    
