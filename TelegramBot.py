@@ -79,6 +79,6 @@ def help(message):
 	bot.send_message(355875782,'/td-розклад на сьогодні\n/tm-розклад на завтра\n/time-розклад пар\n/help-догадаєтесь самі👍')	
 @bot.message_handler(content_types=["text"])
 def text(message):
-	if message.text=='підр':
+	if 'підр','ска' in message.text:
 		bot.send_message(355875782,'сам підар')
 bot.polling()    
