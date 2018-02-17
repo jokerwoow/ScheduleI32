@@ -83,7 +83,7 @@ def text(message):
 	now= datetime.datetime.now()
 	today=['які пари сьогодні','які пари','які сьогодні пари']
 	tomorrow=['які пари завтра','які завтра пари','які в нас пари завтра','які пари взагалі завтра']
-	dictt={'Петришин':'любомир богданович','Ровінський':'Віктор Анатолієвич'}
+	dictt={'петришин':'любомир богданович','ровінський':'Віктор Анатолієвич'}
 	for i in today:
 		if message.text.lower()==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
@@ -95,6 +95,6 @@ def text(message):
 			weekDay=now.weekday()+1
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay))
 	for i in dictt:
-		if message.text.lower()=='як звати'+i:
+		if message.text.lower()=='як звати '+i:
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+dictt[i])		
 bot.polling()    
