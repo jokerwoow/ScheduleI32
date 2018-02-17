@@ -82,11 +82,16 @@ def help(message):
 def text(message):
 	now= datetime.datetime.now()
 	today=['які пари сьогодні','які пари','які сьогодні пари']
-	tomorrow=['які пари завтра','які завтра пари','які в нас праи завтра']
+	tomorrow=['які пари завтра','які завтра пари','які в нас пари завтра']
 	for i in today:
 		if message.text.lower()==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 			weekDay=now.weekday()
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay))
-	
+	for j in tomorrow:
+		if message.text.lower()==j:
+				elif message.text.lower()==j:
+			day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+			weekDay=now.weekday()+1
+			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay))
 bot.polling()    
