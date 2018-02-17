@@ -86,5 +86,5 @@ def text(message):
 		if message.text==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 			weekDay=now.weekday()
-			bot.send_message(message.chat.id,user.first_name+' '+user.last_name +'\n'+brous(day,weekDay))
+			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay))
 bot.polling()    
