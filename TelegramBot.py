@@ -43,7 +43,7 @@ def brous(day,weekDay):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
 		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text	
 	elif weekDay>4:	
-		text='Завтра вихідний хулі'		
+		text='Вихідниииииий'		
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
