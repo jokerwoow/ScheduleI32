@@ -80,10 +80,10 @@ def help(message):
 	bot.send_message(message.chat.id,'/td-розклад на сьогодні\n/tm-розклад на завтра\n/time-розклад пар\n/help-догадаєтесь самі👍')	
 @bot.message_handler(content_types=["text"])
 def text(message):
-	mat=['підр','підар','ска','сука','гандон','гондон','хуй','хуйлобан','бля','блять']
-	for i in mat:
-		if i in message.text:
-			bot.send_message(message.chat.id,'сам ти '+i+' неможна матюкатись\n подивисі на него\n'+message.from_user.first_name+' '+message.from_user.last_name +' ти шо бик?')
-	if message.text=='найс':
-			bot.send_message(message.chat.id,'та да ')
+	now= datetime.datetime.now()
+	today=['які пари сьогодні','Які пари сьогодні','які пари']
+	for i in today:
+		if message.text==i:
+			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
+			bot.send_message(message.chat.id,user.first_name+' '+user.last_name +'\n'+brous(day))
 bot.polling()    
