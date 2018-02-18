@@ -41,7 +41,9 @@ def brous(day,weekDay,tmTd):
 			n=n+1
 		for i in range(int(a/3)):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
-		text='Розклад на '+day+'('+weekDay+')'+'\n'+text			
+		text='Розклад на '+day+'('+weekDay+')'+'\n'+text	
+	elif weekDay=='Saturday' or weekDay=='Sunday':
+		text=tmTd+'Вихідний' 			
 	else:
 		text=tmTd+'немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
