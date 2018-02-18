@@ -31,7 +31,7 @@ def brous(day,weekDay):
 	a=len(schedule)        
 	size=a-(a/3)
 	n=0
-	if len(schedule)>1 and weekDay<=4:
+	if len(schedule)>1:
 		for i in range(len(schedule)-int(size)):
 			numb.append(schedule[n])
 			n=n+1
