@@ -42,8 +42,8 @@ def brous(day,weekDay):
 		for i in range(int(a/3)):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
 		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text	
-	elif weekDay>4:	
-		text='Вихідниииииий'		
+	'''elif weekDay>4:	
+		text='Вихідниииииий'''		
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
@@ -60,20 +60,16 @@ while True:
 	sleep(3600)	'''
 @bot.message_handler(commands=['td'])
 def today(message):
-	while True:	
-		now= datetime.datetime.now()
-		day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
-		weekDay=now.weekday()
-		break
+	now= datetime.datetime.now()
+	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
+	weekDay=now.weekday()
 	bot.send_message(message.chat.id,brous(day,weekDay))	
 
 @bot.message_handler(commands=['tm'])
 def tommorrow(message):
-	while True:
-		now= datetime.datetime.now()
-		day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-		weekDay=now.weekday()+1
-		break
+	now= datetime.datetime.now()
+	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+	weekDay=now.weekday()+1
 	bot.send_message(message.chat.id,brous(day,weekDay))	
 @bot.message_handler(commands=['time'])
 def time(message):
