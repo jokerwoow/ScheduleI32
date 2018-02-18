@@ -81,6 +81,7 @@ def time(message):
 @bot.message_handler(commands=['help'])
 def help(message):
 	bot.send_message(message.chat.id,'/td-розклад на сьогодні\n/tm-розклад на завтра\n/time-розклад пар\n/help-догадаєтесь самі👍')	
+
 @bot.message_handler(content_types=["text"])
 def text(message):
 	now= datetime.datetime.now()
@@ -90,12 +91,12 @@ def text(message):
 	for i in today:
 		if message.text.lower()==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
-			weekDay=now.weekday()
+			weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Сьогодні '))
 	for j in tomorrow:
 		if message.text.lower()==j:
 			day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-			weekDay=now.weekday()+1
+			weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
 		if message.text.lower()=='як звати '+i:
