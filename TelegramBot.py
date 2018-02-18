@@ -41,12 +41,12 @@ def brous(day,weekDay):
 			n=n+1
 		for i in range(int(a/3)):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
-		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text	
-	'''elif weekDay>4:	
-		text='Вихідниииииий'''		
+		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text			
 	else:
 		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
+	'''elif weekDay>4:	
+		text='Вихідниииииий'''
 #Автовідправка 
 '''def botMessage(text):	
 	bot.send_message(-226511191,text)
@@ -70,7 +70,8 @@ def tommorrow(message):
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()+1
-	bot.send_message(message.chat.id,brous(day,weekDay))	
+	bot.send_message(message.chat.id,brous(day,weekDay))
+
 @bot.message_handler(commands=['time'])
 def time(message):
 	schedule='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
