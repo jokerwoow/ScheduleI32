@@ -10,7 +10,7 @@ bot=telebot.TeleBot(TOKEN)
 #@bot.message_handler(content_types=["text"])
 #-226511191
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
-def brous(day,weekDay):
+def brous(day,weekDay,tmTd):
 	response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
 	text=str(response.text.encode('iso-8859-1').decode('cp1251'))
 	soup = BeautifulSoup(text,'html.parser')
@@ -43,7 +43,7 @@ def brous(day,weekDay):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
 		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text			
 	else:
-		text='Завтра немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
+		text='немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
 	'''elif weekDay>4:	
 		text='Вихідниииииий'''
@@ -63,14 +63,16 @@ def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=now.weekday()
-	bot.send_message(message.chat.id,brous(day,weekDay))	
+	tmTd='Сьогодні '
+	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))	
 
 @bot.message_handler(commands=['tm'])
 def tommorrow(message):
 	now = datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
-	bot.send_message(message.chat.id,brous(day,weekDay))
+	tmTd='Завтра '
+	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 
 @bot.message_handler(commands=['time'])
 def time(message):
