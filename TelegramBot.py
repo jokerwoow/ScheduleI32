@@ -67,9 +67,9 @@ def today(message):
 
 @bot.message_handler(commands=['tm'])
 def tommorrow(message):
-	now= datetime.datetime.now()
+	now = datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-	weekDay=now.weekday()+1
+	weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
 	bot.send_message(message.chat.id,brous(day,weekDay))
 
 @bot.message_handler(commands=['time'])
