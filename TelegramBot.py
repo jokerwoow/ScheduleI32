@@ -41,7 +41,7 @@ def brous(day,weekDay,tmTd):
 			n=n+1
 		for i in range(int(a/3)):
 			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
-		text='Розклад на '+day+'('+datetime.datetime.now().strftime('%A')+')'+'\n'+text			
+		text='Розклад на '+day+'('+weekDay+')'+'\n'+text			
 	else:
 		text=tmTd+'немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
 	return text	
@@ -62,7 +62,7 @@ while True:
 def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
-	weekDay=now.weekday()
+	weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
 	tmTd='Сьогодні '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))	
 
