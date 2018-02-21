@@ -65,11 +65,11 @@ while True:
 	if hour==17:
 		botMessage(brous(day))	
 	sleep(3600)	'''
-@bot.message_handler(commands=['start'])
+'''@bot.message_handler(commands=['start'])
 def start(message):
 	keyboard = types.InlineKeyboardMarkup()
 	keyboard.add(*[types.InlineKeyboardButton(text=name,callback_data=name) for name in ['Сьогодні,Завтра']])
-	msg = bot.send_message(message.chat.id,'тадам',reply_markup=keyboard)
+	msg = bot.send_message(message.chat.id,'тадам',reply_markup=keyboard)'''
 @bot.message_handler(commands=['td'])
 def today(message):
 	now= datetime.datetime.now()
