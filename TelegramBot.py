@@ -65,6 +65,11 @@ while True:
 	if hour==17:
 		botMessage(brous(day))	
 	sleep(3600)	'''
+@bot.message_handler(commands=['start'])
+def start(message):
+	keyboard = types.InlineKeyboardMarkup()
+	keyboard.add(*[types.InlineKeyboardButton(text=name,callback_data=name) for name in ['Сьогодні,Завтра']])
+	msg = bot.send_message(message.chat.id,'тадам',reply_markup=keyboard)
 @bot.message_handler(commands=['td'])
 def today(message):
 	now= datetime.datetime.now()
@@ -108,7 +113,7 @@ def text(message):
 	for i in dictt:
 		if message.text.lower()=='як звати '+i:
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+dictt[i])		
-@bot.callback_query_handler(func=lambda c: c.data)
+'''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
     """Редактируем сообщение каждый раз, когда пользователь переходит по
     страницам.
@@ -116,6 +121,6 @@ def pages(c):
     if c.data=="Сьогодні":
    	 	bot.send_message(message.chat.id,'/tm')
    	elif c.data=="Завтра":
-   		bot.send_message(message.chat.id,'/td') 	
+   		bot.send_message(message.chat.id,'/td') '''	
             
 bot.polling()    
