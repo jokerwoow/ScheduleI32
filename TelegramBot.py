@@ -113,11 +113,9 @@ def pages(c):
     """Редактируем сообщение каждый раз, когда пользователь переходит по
     страницам.
     """
-    bot.edit_message_text(
-        chat_id=c.message.chat.id,
-        message_id=c.message.message_id,
-        text=BOOK[int(c.data[3:]):int(c.data[3:]) + 700],
-        parse_mode='Markdown',
-        reply_markup=pages_keyboard(int(c.data[3:]), 
-            int(c.data[3:]) + 700))
+    if c.data=="Сьогодні":
+   	 	bot.send_message(message.chat.id,'/tm')
+   	elif c.data=="Завтра":
+   		bot.send_message(message.chat.id,'/td') 	
+            
 bot.polling()    
