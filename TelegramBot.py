@@ -108,4 +108,16 @@ def text(message):
 	for i in dictt:
 		if message.text.lower()=='як звати '+i:
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+dictt[i])		
+@bot.callback_query_handler(func=lambda c: c.data)
+def pages(c):
+    """Редактируем сообщение каждый раз, когда пользователь переходит по
+    страницам.
+    """
+    bot.edit_message_text(
+        chat_id=c.message.chat.id,
+        message_id=c.message.message_id,
+        text=BOOK[int(c.data[3:]):int(c.data[3:]) + 700],
+        parse_mode='Markdown',
+        reply_markup=pages_keyboard(int(c.data[3:]), 
+            int(c.data[3:]) + 700))
 bot.polling()    
