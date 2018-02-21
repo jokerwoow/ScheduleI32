@@ -40,7 +40,7 @@ def brous(day,weekDay,tmTd):
 			things.append(schedule[n])
 			n=n+1
 		for i in range(int(a/3)):
-			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n'
+			text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
 		text='Розклад на '+day+'('+weekDay+')'+'\n'+text	
 	elif weekDay=='Saturday' or weekDay=='Sunday':
 		text=tmTd+'Вихідний' 			
