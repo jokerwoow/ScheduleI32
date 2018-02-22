@@ -68,10 +68,10 @@ while True:
 @bot.message_handler(commands=['start'])
 def start(message):
     keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add(*[telebot.types.KeyboardButton(name) for name in ['/tm', '/td','/time','/help']])
+    keyboard.add(*[telebot.types.KeyboardButton(name) for name in ['/Сьогодні', '/Завтра','/time','/help']])
     #bot.send_message(message.chat.id, 'А ось і я', reply_markup=keyboard)
 
-@bot.message_handler(commands=['td'])
+@bot.message_handler(commands=['Сьогодні'])
 def today(message):
 	now= datetime.datetime.now()
 	day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
@@ -79,7 +79,7 @@ def today(message):
 	tmTd='Сьогодні '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))	
 
-@bot.message_handler(commands=['tm'])
+@bot.message_handler(commands=['Завтра'])
 def tommorrow(message):
 	now = datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
