@@ -70,6 +70,7 @@ def start(message):
     keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(*[telebot.types.KeyboardButton(name) for name in ['/Сьогодні', '/Завтра','/time','/help']])
     #bot.send_message(message.chat.id, 'А ось і я', reply_markup=keyboard)
+    reply_markup=keyboard
 
 @bot.message_handler(commands=['Сьогодні'])
 def today(message):
