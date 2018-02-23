@@ -71,7 +71,7 @@ markup.row('розклад', 'викладач',)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, 'Льоха піська\n А кукляк сіська', reply_markup=murkup)
+    bot.send_message(message.chat.id, 'Льоха піська\n А кукляк сіська', reply_markup=markup)
 
 @bot.message_handler(commands=['Сьогодні'])
 def today(message):
