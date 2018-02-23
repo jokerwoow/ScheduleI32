@@ -124,7 +124,7 @@ def text(message):
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
 		if i in message.text.lower():
-			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+dictt[i])		
+			bot.send_message(message.chat.id,'Викладача з '+i +'звати\n'+dictt[i],reply_markup=markup)		
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
     """Редактируем сообщение каждый раз, когда пользователь переходит по
