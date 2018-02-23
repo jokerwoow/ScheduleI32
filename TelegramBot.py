@@ -125,7 +125,7 @@ def text(message):
 	for i in dictt:
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i])
-			bot.send_message(message.chat.id,'А ось і розклад',reply_markup=markup)
+			bot.send_message(message.chat.id,'тадам',reply_markup=markup)
 			
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
