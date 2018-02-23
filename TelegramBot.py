@@ -96,7 +96,7 @@ def teacher(message):
 	teach.row('Комп. Математика.', 'Комп. Мережі.')
 	teach.row('Паралельні. обчис.', 'Обробка зображ.')
 
-	bot.send_message(message.chat.id,'  ',reply_markup=teach,reply_markup=markup)
+	bot.send_message(message.chat.id,'  ',reply_markup=teach)
 
 @bot.message_handler(commands=['Розклад'])
 def time(message):
@@ -124,7 +124,9 @@ def text(message):
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
 		if i in message.text.lower():
-			bot.send_message(message.chat.id,dictt[i])		
+			bot.send_message(message.chat.id,dictt[i])
+			bot.send_message(message.chat.id,'   ',reply_markup=markup)
+			
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
     """Редактируем сообщение каждый раз, когда пользователь переходит по
