@@ -65,11 +65,13 @@ while True:
 	if hour==17:
 		botMessage(brous(day))	
 	sleep(3600)	'''
+markup = telebot.types.ReplyKeyboardMarkup()
+markup.row('Сьогодні', 'Завтра')
+markup.row('розклад', 'викладач',)
+
 @bot.message_handler(commands=['start'])
 def start(message):
-    keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add(*[telebot.types.KeyboardButton(name) for name in ['/Сьогодні', '/Завтра','/time','/help']])
-    bot.send_message(message.chat.id, 'Льоха піська\n А кукляк сіська', reply_markup=keyboard)
+    bot.send_message(message.chat.id, 'Льоха піська\n А кукляк сіська', reply_markup=murkup)
 
 @bot.message_handler(commands=['Сьогодні'])
 def today(message):
@@ -87,7 +89,7 @@ def tommorrow(message):
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 
-@bot.message_handler(commands=['time'])
+@bot.message_handler(commands=['Розклад'])
 def time(message):
 	schedule='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
 	bot.send_message(message.chat.id,schedule)	
