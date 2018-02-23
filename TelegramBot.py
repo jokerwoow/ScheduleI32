@@ -67,11 +67,11 @@ while True:
 	sleep(3600)	'''
 markup = telebot.types.ReplyKeyboardMarkup()
 markup.row('/Сьогодні', '/Завтра')
-markup.row('/Розклад', 'викладач',)
+markup.row('/Розклад', '/Викладач')
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n', reply_markup=markup)
+    bot.send_message(message.chat.id,'А ось і розклад', reply_markup=markup)
 
 @bot.message_handler(commands=['Сьогодні'])
 def today(message):
@@ -88,6 +88,9 @@ def tommorrow(message):
 	weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
+@bot.message_handler(commands=['Викладач'])
+def teacher(message):
+	bot.send_message(message.chat.id,'Введіть прізвище викладача імя якого хочете взнати')
 
 @bot.message_handler(commands=['Розклад'])
 def time(message):
@@ -114,7 +117,7 @@ def text(message):
 			weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
-		if message.text.lower()=='як звати '+i:
+		if message.text.lower()==i:
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+dictt[i])		
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
