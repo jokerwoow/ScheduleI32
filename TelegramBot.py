@@ -66,8 +66,8 @@ while True:
 		botMessage(brous(day))	
 	sleep(3600)	'''
 markup = telebot.types.ReplyKeyboardMarkup()
-markup.row('Сьогодні', 'Завтра')
-markup.row('розклад', 'викладач',)
+markup.row('/Сьогодні', '/Завтра')
+markup.row('/Розклад', 'викладач',)
 
 @bot.message_handler(commands=['start'])
 def start(message):
