@@ -65,7 +65,7 @@ while True:
 	if hour==17:
 		botMessage(brous(day))	
 	sleep(3600)	'''
-markup = telebot.types.ReplyKeyboardMarkup()
+markup = telebot.types.KeyboardButton()
 markup.row('/Сьогодні', '/Завтра')
 markup.row('/Розклад', '/Викладач')
 
@@ -90,13 +90,13 @@ def tommorrow(message):
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
 def teacher(message):
-	teach = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
+	teach = telebot.types.KeyboardButton()
 	teach.row('МОІДО.', 'Операційні. системи.')
 	teach.row('Педагогіка.', 'Менеджмент.')
 	teach.row('Комп. Математика.', 'Комп. Мережі.')
 	teach.row('Паралельні. обчис.', 'Обробка зображ.')
 
-	bot.send_message(message.chat.id,'ВВиберіть предмет з якого хочете знати викладача',reply_markup=teach)
+	bot.send_message(message.chat.id,'Виберіть предмет з якого хочете знати викладача',reply_markup=teach)
 
 @bot.message_handler(commands=['Розклад'])
 def time(message):
@@ -111,7 +111,7 @@ def text(message):
 	now= datetime.datetime.now()
 	today=['які пари сьогодні','які пари','які сьогодні пари']
 	tomorrow=['які пари завтра','які завтра пари','які в нас пари завтра','які пари взагалі завтра']
-	dictt={'комп. мережі ':'Петришин Михайло Любомирович','моідо':'Мазуренко Віктор Володимирович','педагогіка.':'Стинська Вікторія Володимирівна','менеджмент.': 'Гречаник Наталія Юріївна','обробка зображ.':'Косаревич Ростислав Ярославович','комп. математика.':'Костишин Любов Павлівна','паралельні. обчис.':'Горєлов Віталій Олевтинович','операційні. системи.':' Гейко Орест Ярославович'}
+	dictt={'комп. мережі.':'Петришин Михайло Любомирович','моідо':'Мазуренко Віктор Володимирович','педагогіка.':'Стинська Вікторія Володимирівна','менеджмент.': 'Гречаник Наталія Юріївна','обробка зображ.':'Косаревич Ростислав Ярославович','комп. математика.':'Костишин Любов Павлівна','паралельні. обчис.':'Горєлов Віталій Олевтинович','операційні. системи.':' Гейко Орест Ярославович'}
 	for i in today:
 		if message.text.lower()==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
@@ -124,7 +124,7 @@ def text(message):
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
 		if i in message.text.lower():
-			bot.send_message(message.chat.id,'Викладача з '+i +'звати\n'+dictt[i],reply_markup=markup)		
+			bot.send_message(message.chat.id,'Викладача з '+ i +' звати\n'+dictt[i],reply_markup=markup)		
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
     """Редактируем сообщение каждый раз, когда пользователь переходит по
