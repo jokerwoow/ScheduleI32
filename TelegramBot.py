@@ -65,7 +65,7 @@ while True:
 	if hour==17:
 		botMessage(brous(day))	
 	sleep(3600)	'''
-markup = telebot.types.KeyboardButton()
+markup = telebot.types.ReplyKeyboardMarkup()
 markup.row('/Сьогодні', '/Завтра')
 markup.row('/Розклад', '/Викладач')
 
@@ -90,7 +90,7 @@ def tommorrow(message):
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
 def teacher(message):
-	teach = telebot.types.KeyboardButton()
+	teach = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
 	teach.row('МОІДО.', 'Операційні. системи.')
 	teach.row('Педагогіка.', 'Менеджмент.')
 	teach.row('Комп. Математика.', 'Комп. Мережі.')
@@ -124,7 +124,7 @@ def text(message):
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
 		if i in message.text.lower():
-			bot.send_message(message.chat.id,'Викладача з '+ i +' звати\n'+dictt[i],reply_markup=markup)		
+			bot.send_message(message.chat.id,dictt[i],reply_markup=markup)		
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
     """Редактируем сообщение каждый раз, когда пользователь переходит по
