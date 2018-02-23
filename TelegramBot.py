@@ -90,7 +90,11 @@ def tommorrow(message):
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
 def teacher(message):
-	bot.send_message(message.chat.id,'Введіть прізвище викладача імя якого хочете взнати')
+	teach = telebot.types.ReplyKeyboardMarkup()
+	teach.row('Петришин', 'Гейко')
+	teach.row('Мазуренко', 'Ровінський')
+
+	bot.send_message(message.chat.id,'Введіть прізвище викладача імя якого хочете взнати',reply_markup=teach)
 
 @bot.message_handler(commands=['Розклад'])
 def time(message):
