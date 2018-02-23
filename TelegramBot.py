@@ -105,7 +105,7 @@ def text(message):
 	now= datetime.datetime.now()
 	today=['які пари сьогодні','які пари','які сьогодні пари']
 	tomorrow=['які пари завтра','які завтра пари','які в нас пари завтра','які пари взагалі завтра']
-	dictt={'петр':'Любомир Богданович(старший)\nМихайло Любомирович(молодший)','ровінського':'Віктор Анатолієвич','мазуренка':'Віктор Володимирович','стинську': 'Вікторія Володимирівна','косаревича':'Ростислав Ярославович','костишин':'Любов Павлівна','гречаник':'Наталія Юріївна','горєлова':'Віталій Олевтинович','гейка':'Орест Ярославович'}
+	dictt={'петри':'Любомир Богданович(старший)\nМихайло Любомирович(молодший)','ровінського':'Віктор Анатолієвич','мазуренка':'Віктор Володимирович','стинську': 'Вікторія Володимирівна','косаревича':'Ростислав Ярославович','костишин':'Любов Павлівна','гречаник':'Наталія Юріївна','горєлова':'Віталій Олевтинович','гейка':'Орест Ярославович'}
 	for i in today:
 		if message.text.lower()==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
@@ -117,7 +117,7 @@ def text(message):
 			weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
-		if message.text.lower()==i:
+		if i in message.text.lower():
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+dictt[i])		
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
