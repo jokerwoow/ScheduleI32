@@ -71,7 +71,7 @@ markup.row('/Розклад', '/Викладач')
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id,'  ', reply_markup=markup)
+    bot.send_message(message.chat.id,'А ось і розклад', reply_markup=markup)
 
 @bot.message_handler(commands=['Сьогодні'])
 def today(message):
@@ -96,7 +96,7 @@ def teacher(message):
 	teach.row('Комп. Математика.', 'Комп. Мережі.')
 	teach.row('Паралельні. обчис.', 'Обробка зображ.')
 
-	bot.send_message(message.chat.id,'  ',reply_markup=teach)
+	bot.send_message(message.chat.id,'Виберіть предмет з якого хочете знати викладача',reply_markup=teach)
 
 @bot.message_handler(commands=['Розклад'])
 def time(message):
@@ -125,7 +125,7 @@ def text(message):
 	for i in dictt:
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i])
-			bot.send_message(message.chat.id,'   ',reply_markup=markup)
+			bot.send_message(message.chat.id,'А ось і розклад',reply_markup=markup)
 			
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
