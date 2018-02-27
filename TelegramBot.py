@@ -140,7 +140,7 @@ def text(message):
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i])
 			bot.send_message(message.chat.id,'тадам',reply_markup=markup)
-	if message.from_user.first_name=='Олексій' and message.from_user.last_name=='Пашкевич':
+	if message.from_user.first_name=='Oleksii' and message.from_user.last_name=='Pashkevych':
 		bot.send_message(message.chat.id,lox[oleksiy]) 		
 '''@bot.callback_query_handler(func=lambda c: c.data)
 def pages(c):
