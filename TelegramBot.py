@@ -142,14 +142,4 @@ def text(message):
 			bot.send_message(message.chat.id,'тадам',reply_markup=markup)
 	if message.from_user.first_name=='Oleksii' and message.from_user.last_name=='Pashkevych':
 		bot.send_message(message.chat.id,lox[oleksiy]) 		
-'''@bot.callback_query_handler(func=lambda c: c.data)
-def pages(c):
-    """Редактируем сообщение каждый раз, когда пользователь переходит по
-    страницам.
-    """
-    if c.data=="Сьогодні":
-   	 	bot.send_message(message.chat.id,'/tm')
-   	elif c.data=="Завтра":
-   		bot.send_message(message.chat.id,'/td') '''	
-            
 bot.polling()    
