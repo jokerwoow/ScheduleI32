@@ -14,7 +14,7 @@ url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
 
 def brous(day,weekDay,tmTd):
 	try:
-		response = requests.post(url,data={'group':'ЕК-31'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1003'})
+		response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
 		text=str(response.text.encode('iso-8859-1').decode('cp1251'))
 		soup = BeautifulSoup(text,'html.parser')
 		
