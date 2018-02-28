@@ -14,7 +14,7 @@ url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
 
 def brous(day,weekDay,tmTd):
 	try:
-		response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
+		response = requests.post(url,data={'group':'ЕК-31'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1003'})
 		text=str(response.text.encode('iso-8859-1').decode('cp1251'))
 		soup = BeautifulSoup(text,'html.parser')
 		
@@ -89,7 +89,6 @@ def today(message):
 @bot.message_handler(commands=['Завтра'])
 def tommorrow(message):
 	now = datetime.datetime.now()
-	
 	try:
 		day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 		weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
