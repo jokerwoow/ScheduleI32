@@ -90,7 +90,10 @@ def today(message):
 def tommorrow(message):
 	now = datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-	weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
+	try:
+		weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
+	except:
+		weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')	
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
