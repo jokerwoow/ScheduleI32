@@ -118,8 +118,8 @@ def help(message):
 @bot.message_handler(content_types=["text"])
 def text(message):
 	now= datetime.datetime.now()
-	lox=['Лашара я тебе хейчу','Пздц ти лох','Льоха підр','Боже льоха чого ти такий мудак?',
-	'Ой та закрийся вже','Всьо тобі пизда','Тікай з села мудак по тебе виїхали']
+	#lox=['Лашара я тебе хейчу','Пздц ти лох','Льоха підр','Боже льоха чого ти такий мудак?',
+	#'Ой та закрийся вже','Всьо тобі пизда','Тікай з села мудак по тебе виїхали']
 
 	today=['які пари сьогодні','які пари','які сьогодні пари']
 
@@ -128,7 +128,7 @@ def text(message):
 	dictt={'комп. мережі.':'Петришин Михайло Любомирович','моідо':'Мазуренко Віктор Володимирович','педагогіка.':'Стинська Вікторія Володимирівна',
 	'менеджмент.': 'Гречаник Наталія Юріївна','обробка зображ.':'Косаревич Ростислав Ярославович','комп. математика.':'Костишин Любов Павлівна',
 	'паралельні. обчис.':'Горєлов Віталій Олевтинович','операційні. системи.':' Гейко Орест Ярославович'}
-	oleksiy=random.randrange(0,len(lox))
+	#oleksiy=random.randrange(0,len(lox))
 	
 	for i in today:
 		if message.text.lower()==i:
@@ -148,6 +148,6 @@ def text(message):
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i])
 			bot.send_message(message.chat.id,'тадам',reply_markup=markup)
-	if message.from_user.first_name=='Oleksii' and message.from_user.last_name=='Pashkevych':
-		bot.send_message(message.chat.id,lox[oleksiy]) 		
+	#if message.from_user.first_name=='Oleksii' and message.from_user.last_name=='Pashkevych':
+	#	bot.send_message(message.chat.id,lox[oleksiy]) 		
 bot.polling()    
