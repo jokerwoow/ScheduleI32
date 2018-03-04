@@ -58,8 +58,6 @@ def brous(day,weekDay,tmTd):
 	#except:
 	#	text='Сайт з розкладом не працює'
 		return text	
-	'''elif weekDay>4:	
-		text='Вихідниииииий'''
 #Автовідправка 
 '''def botMessage(text):	
 	bot.send_message(-226511191,text)
