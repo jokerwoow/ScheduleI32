@@ -4,64 +4,59 @@ from bs4 import BeautifulSoup
 import telebot 
 import datetime
 from time import sleep
-import random
-import calendar
 TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
 
 #@bot.message_handler(content_types=["text"])
 #-226511191
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
-
 def brous(day,weekDay,tmTd):
-	#try:
-		response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
-		text=str(response.text.encode('iso-8859-1').decode('cp1251'))
-		soup = BeautifulSoup(text,'html.parser')
-		
-		schedule=[] 
-		time=[]
-		numb=[]
-		things=[]
-		
-		text=''
+	response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
+	text=str(response.text.encode('iso-8859-1').decode('cp1251'))
+	soup = BeautifulSoup(text,'html.parser')
 	
-		divTag = soup.find("div", {"class": "container"})
-		
-		for tag in divTag:
-		    tdTags = tag.find_all("td")
-		    for tag in tdTags:
-		        schedule.append(tag.text)   
-		a=len(schedule)        
-		size=a-(a/3)
-		n=0
-		if len(schedule)>1:
-			for i in range(len(schedule)-int(size)):
-				numb.append(schedule[n])
-				n=n+1
-				time.append(schedule[n][0:5]+'-'+schedule[n][5:10])
-				n=n+1
-				things.append(schedule[n])
-				n=n+1
-			for i in range(int(a/3)):
-				if things[i]=='':
-					numb[i]=''
-					time[i]=''
-					text=''
-				else:	
-					text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
-			text='Розклад на '+day+'('+weekDay+')'+'\n\n'+text	
-		elif weekDay=='Saturday' or weekDay=='Sunday':
-			text=tmTd+'Вихідний' 			
-		else:
-			text=tmTd+'немає пар юху 👍'	
-	#except:
-	#	text='Сайт з розкладом не працює'
-		return text	
+	schedule=[] 
+	time=[]
+	numb=[]
+	things=[]
+	
+	text=''
+
+	divTag = soup.find("div", {"class": "container"})
+	
+	for tag in divTag:
+	    tdTags = tag.find_all("td")
+	    for tag in tdTags:
+	        schedule.append(tag.text)   
+	a=len(schedule)        
+	size=a-(a/3)
+	n=0
+	if len(schedule)>1:
+		for i in range(len(schedule)-int(size)):
+			numb.append(schedule[n])
+			n=n+1
+			time.append(schedule[n][0:5]+'-'+schedule[n][5:10])
+			n=n+1
+			things.append(schedule[n])
+			n=n+1
+		for i in range(int(a/3)):
+			if things[i]=='':
+				numb[i]=''
+				time[i]=''
+				text=''
+			else:	
+				text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
+		text='Розклад на '+day+'('+weekDay+')'+'\n\n'+text	
+	elif weekDay=='Saturday' or weekDay=='Sunday':
+		text=tmTd+'Вихідний' 			
+	else:
+		text=tmTd+'немає пар юху 	👍\n Або сайт з розкладом накрився 👎'	
+	return text	
+	'''elif weekDay>4:	
+		text='Вихідниииииий'''
 #Автовідправка 
 '''def botMessage(text):	
 	bot.send_message(-226511191,text)
-
 while True:	
 	now= datetime.datetime.now()
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
@@ -88,14 +83,8 @@ def today(message):
 @bot.message_handler(commands=['Завтра'])
 def tommorrow(message):
 	now = datetime.datetime.now()
-	month=calendar.monthrange(now.year, now.month)
-	#if now.day+1<=month[1]:
 	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 	weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
-	#else:
-	#	day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)
-	#	weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
-		
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
@@ -119,36 +108,32 @@ def help(message):
 @bot.message_handler(content_types=["text"])
 def text(message):
 	now= datetime.datetime.now()
-	#lox=['Лашара я тебе хейчу','Пздц ти лох','Льоха підр','Боже льоха чого ти такий мудак?',
-	#'Ой та закрийся вже','Всьо тобі пизда','Тікай з села мудак по тебе виїхали']
-
 	today=['які пари сьогодні','які пари','які сьогодні пари']
-
 	tomorrow=['які пари завтра','які завтра пари','які в нас пари завтра','які пари взагалі завтра']
-
-	dictt={'комп. мережі.':'Петришин Михайло Любомирович','моідо':'Мазуренко Віктор Володимирович','педагогіка.':'Стинська Вікторія Володимирівна',
-	'менеджмент.': 'Гречаник Наталія Юріївна','обробка зображ.':'Косаревич Ростислав Ярославович','комп. математика.':'Костишин Любов Павлівна',
-	'паралельні. обчис.':'Горєлов Віталій Олевтинович','операційні. системи.':' Гейко Орест Ярославович'}
-	#oleksiy=random.randrange(0,len(lox))
-	
+	dictt={'комп. мережі.':'Петришин Михайло Любомирович','моідо':'Мазуренко Віктор Володимирович','педагогіка.':'Стинська Вікторія Володимирівна','менеджмент.': 'Гречаник Наталія Юріївна','обробка зображ.':'Косаревич Ростислав Ярославович','комп. математика.':'Костишин Любов Павлівна','паралельні. обчис.':'Горєлов Віталій Олевтинович','операційні. системи.':' Гейко Орест Ярославович'}
 	for i in today:
 		if message.text.lower()==i:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 			weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Сьогодні '))
-	'''for j in tomorrow:
+	for j in tomorrow:
 		if message.text.lower()==j:
-			try:
-				day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-				weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
-			except:
-				weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
-				day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)
-			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))'''
+			day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+			weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
+			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
 	for i in dictt:
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i])
 			bot.send_message(message.chat.id,'тадам',reply_markup=markup)
-	#if message.from_user.first_name=='Oleksii' and message.from_user.last_name=='Pashkevych':
-	#	bot.send_message(message.chat.id,lox[oleksiy]) 		
+			
+'''@bot.callback_query_handler(func=lambda c: c.data)
+def pages(c):
+    """Редактируем сообщение каждый раз, когда пользователь переходит по
+    страницам.
+    """
+    if c.data=="Сьогодні":
+   	 	bot.send_message(message.chat.id,'/tm')
+   	elif c.data=="Завтра":
+   		bot.send_message(message.chat.id,'/td') '''	
+            
 bot.polling()    
