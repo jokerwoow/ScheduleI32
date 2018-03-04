@@ -138,7 +138,7 @@ def text(message):
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 			weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
 			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Сьогодні '))
-	for j in tomorrow:
+	'''for j in tomorrow:
 		if message.text.lower()==j:
 			try:
 				day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
@@ -146,7 +146,7 @@ def text(message):
 			except:
 				weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
 				day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)
-			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))
+			bot.send_message(message.chat.id,message.from_user.first_name+' '+message.from_user.last_name +'\n'+brous(day,weekDay,'Завтра '))'''
 	for i in dictt:
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i])
