@@ -91,12 +91,12 @@ def today(message):
 def tommorrow(message):
 	now = datetime.datetime.now()
 	month=calendar.monthrange(now.year, now.month)
-	if now.day+1<=month[1]:
-		day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-		weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
-	else:
-		day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)
-		weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
+	#if now.day+1<=month[1]:
+	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
+	weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
+	#else:
+	#	day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)
+	#	weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
 		
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
