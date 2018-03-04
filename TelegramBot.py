@@ -5,6 +5,7 @@ import telebot
 import datetime
 from time import sleep
 import random
+import calendar
 TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
 
@@ -89,12 +90,14 @@ def today(message):
 @bot.message_handler(commands=['Завтра'])
 def tommorrow(message):
 	now = datetime.datetime.now()
-	try:
+	month=calendar.monthrange(now.year, now.month)
+	if now.day+1<=month[1]:
 		day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
 		weekDay=datetime.datetime(now.year,now.month,now.day+1).strftime('%A')
-	except:
+	else:
+		day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)
 		weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
-		day=str(1)+'.'+str(now.month+1)+'.'+str(now.year)	
+		
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
