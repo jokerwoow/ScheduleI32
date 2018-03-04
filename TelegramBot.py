@@ -46,7 +46,6 @@ def brous(day,weekDay,tmTd):
 				if things[i]=='':
 					numb[i]=''
 					time[i]=''
-					text=''
 				else:	
 					text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
 			text='Розклад на '+day+'('+weekDay+')'+'\n\n'+text	
@@ -95,7 +94,6 @@ def tommorrow(message):
 	except:
 		day=str(1)+'.'+str(now.month)+'.'+str(now.year)
 		weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
-			
 	tmTd='Завтра '
 	bot.send_message(message.chat.id,brous(day,weekDay,tmTd))
 @bot.message_handler(commands=['Викладач'])
