@@ -57,7 +57,7 @@ def brous(day,weekDay,tmTd):
 			text=tmTd+'немає пар юху 👍'	
 	#except:
 	#	text='Сайт з розкладом не працює'
-	return text	
+		return text	
 	'''elif weekDay>4:	
 		text='Вихідниииииий'''
 #Автовідправка 
