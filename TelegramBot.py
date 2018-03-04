@@ -14,7 +14,7 @@ bot=telebot.TeleBot(TOKEN)
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
 
 def brous(day,weekDay,tmTd):
-	try:
+	#try:
 		response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
 		text=str(response.text.encode('iso-8859-1').decode('cp1251'))
 		soup = BeautifulSoup(text,'html.parser')
@@ -55,8 +55,8 @@ def brous(day,weekDay,tmTd):
 			text=tmTd+'Вихідний' 			
 		else:
 			text=tmTd+'немає пар юху 👍'	
-	except:
-		text='Сайт з розкладом не працює'
+	#except:
+	#	text='Сайт з розкладом не працює'
 	return text	
 	'''elif weekDay>4:	
 		text='Вихідниииииий'''
