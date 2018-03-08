@@ -93,15 +93,28 @@ def text(message):
 		if i in message.text.lower():
 			bot.send_message(message.chat.id,dictt[i],reply_markup=markup)
 	#day
-#	for i in scheduleDay:
-#		if i in message.text:
-#			bot.send_message(message.chat.id,'В розробці',reply_markup=markup)
-#			dayNumb=now.day
-#			day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
-#			weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')
-#			while weekDay!=i:
+	for i in scheduleDay:
+		if i in message.text:
+			nowDay=scheduleDay[i]
+			#bot.send_message(message.chat.id,nowDay,reply_markup=markup)
+			dayNumb=now.day
+			day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
+			weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')
+			while True:
+				if nowDay==weekDay:
+					bot.send_message(message.chat.id,brous(day,weekDay),reply_markup=markup)
+					break
+				else:
+					dayNumb+=1
+					try:
+						day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
+						weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')	
+					except:
+						weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
+						day=str(dayNumb)+'.'+str(now.month+1)+'.'+str(now.year)	
+#			while weekDay!=nowDay:
 #
-#				if weekDay==i:
+#				if weekDay==nowDay:
 #					bot.send_message(message.chat.id,brous(day,weekDay))
 #				else:	
 #					dayNumb+=1
@@ -133,7 +146,7 @@ def text(message):
 	if message.text=='Рулетка 🎰':
 		bot.send_message(message.chat.id,'Рандом вибрав підаром '+ friends[rand])	
 	if message.text=='👽 Викладачі':
-		teach = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
+		teach = telebot.types.ReplyKeyboardMarkup()
 		teach.row('МОІДО.', 'Операційні. системи.')
 		teach.row('Педагогіка.', 'Менеджмент.')
 		teach.row('Комп. Математика.', 'Комп. Мережі.')
@@ -142,14 +155,14 @@ def text(message):
 		bot.send_message(message.chat.id,'Виберіть предмет з якого хочете знати викладача',reply_markup=teach)	
 
 	if message.text=='📅 День':
-#		days = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
-#		days.row('Понеділок')
-#		days.row('Вівторок')
-#		days.row('Середа')
-#		days.row('Четвер')
-#		days.row('Пятниця')
-#		bot.send_message(message.chat.id,'Виберіть день',reply_markup=days)	
-		bot.send_message(message.chat.id,'В розробці')
+		days = telebot.types.ReplyKeyboardMarkup()
+		days.row('Понеділок')
+		days.row('Вівторок')
+		days.row('Середа')
+		days.row('Четвер')
+		days.row('Пятниця')
+		bot.send_message(message.chat.id,'Виберіть день',reply_markup=days)	
+#		bot.send_message(message.chat.id,'В розробці')
 	if message.text=='📅 Тиждень':
 		dayNumb=now.day
 		day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
