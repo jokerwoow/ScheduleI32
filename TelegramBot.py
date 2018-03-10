@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import telebot 
 import datetime
-from time import sleep
+import threading
+import time
 import random
 TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
@@ -57,17 +58,8 @@ def brous(day,weekDay):
 		text='Сайт з розкладом не працює'
 	return text	
 
-#Автовідправка 
-'''def botMessage(text):	
-	bot.send_message(-226511191,text)
 
-while True:	
-	now= datetime.datetime.now()
-	day=str(now.day+1)+'.'+str(now.month)+'.'+str(now.year)
-	hour=now.hour
-	if hour==17:
-		botMessage(brous(day))	
-	sleep(3600)	'''
+
 markup = telebot.types.ReplyKeyboardMarkup()
 markup.row('⌛ Сьогодні', '⏳ Завтра')
 markup.row('📅 День','📅 Тиждень')
@@ -76,7 +68,19 @@ markup.row('Рулетка 🎰')
 	
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id,'А ось і розклад', reply_markup=markup)
+	now= datetime.datetime.now()
+	bot.send_message(message.chat.id,'А ось і розклад', reply_markup=markup)
+	def clock(interval):
+		while True:
+			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
+			weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
+			if now.hour==16:	
+				bot.send_message(message.chat.id,brous(day,'Шухєєєєр розклад на завтра \n'+weekDay))  
+			time.sleep(interval)  
+	
+	sec=60*60	
+	t = threading.Thread(target=clock, args=(sec,))
+	t.start()
 
 @bot.message_handler(content_types=["text"])
 def text(message):
@@ -96,7 +100,6 @@ def text(message):
 	for i in scheduleDay:
 		if i in message.text:
 			nowDay=scheduleDay[i]
-			#bot.send_message(message.chat.id,nowDay,reply_markup=markup)
 			dayNumb=now.day
 			day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
 			weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')
@@ -112,17 +115,6 @@ def text(message):
 					except:
 						weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
 						day=str(dayNumb)+'.'+str(now.month+1)+'.'+str(now.year)	
-#			while weekDay!=nowDay:
-#
-#				if weekDay==nowDay:
-#					bot.send_message(message.chat.id,brous(day,weekDay))
-#				else:	
-#					dayNumb+=1
-#					try:
-#						weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')
-#					except:
-#						weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')	
-#					day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
 				
 	
 	if message.text=='⌛ Сьогодні':
@@ -162,15 +154,19 @@ def text(message):
 		days.row('Четвер')
 		days.row('Пятниця')
 		bot.send_message(message.chat.id,'Виберіть день',reply_markup=days)	
-#		bot.send_message(message.chat.id,'В розробці')
+
+
 	if message.text=='📅 Тиждень':
+		n=0
 		dayNumb=now.day
-		day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
-		weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')
-		while weekDay!='Saturday':
+		
+		while True:
+			day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
+			weekDay=datetime.datetime(now.year,now.month,dayNumb).strftime('%A')
 			if weekDay=='Saturday' or weekDay=='Sunday':
-				z=0
+				dayNumb+=1
 			else:	
+				n+=1
 				bot.send_message(message.chat.id,brous(day,weekDay))
 				dayNumb+=1
 				try:
@@ -178,5 +174,7 @@ def text(message):
 				except:
 					weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')	
 				day=str(dayNumb)+'.'+str(now.month)+'.'+str(now.year)
+				if n==5:
+					break
 			
 bot.polling()    
