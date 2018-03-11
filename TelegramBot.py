@@ -70,7 +70,7 @@ markup.row('Рулетка 🎰')
 def start(message):
 	now= datetime.datetime.now()
 	bot.send_message(message.chat.id,'А ось і розклад', reply_markup=markup)
-	def clock(interval):
+	'''def clock(interval):
 		while True:
 			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 			weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
@@ -80,7 +80,7 @@ def start(message):
 	
 	sec=60*60	
 	t = threading.Thread(target=clock, args=(sec,))
-	t.start()
+	t.start()'''
 
 @bot.message_handler(content_types=["text"])
 def text(message):
