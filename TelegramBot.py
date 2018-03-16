@@ -46,8 +46,19 @@ def brous(day,weekDay):
 			for i in range(int(a/3)):
 				if things[i]=='':
 					numb[i]=''
-					time[i]=''
-				else:	
+					time[i]=''	
+				elif 'Основи' and 'Мультимедійні додатки' in things[i]:
+						things[i]=things[i][0:3]+' Какос'
+						text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
+				elif 'Основи' in things[i]:
+						things[i]=things[i][0:3]+' Какос'
+						text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
+				elif les[0] in things[i] or les[1] in things[i] :
+						numb[i]=''
+						time[i]=''	
+						things[i]=''	
+				else:
+								
 					text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
 			text='Розклад на '+day+'('+weekDay+')'+'\n\n'+text	
 		elif weekDay=='Saturday' or weekDay=='Sunday':
