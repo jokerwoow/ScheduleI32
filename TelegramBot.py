@@ -23,7 +23,7 @@ def brous(day,weekDay):
 		time=[]
 		numb=[]
 		things=[]
-		
+		les=['Мультимедійні додатки','Розробка користувацьких']
 		text=''
 	
 		divTag = soup.find("div", {"class": "container"})
