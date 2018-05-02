@@ -9,7 +9,7 @@ import random
 TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
 
-
+#adsf adsf asdf                                   
 url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
                          
 def brous(day,weekDay):
@@ -46,7 +46,7 @@ def brous(day,weekDay):
 				if things[i]=='':
 					numb[i]=''
 					time[i]=''	
-				elif 'Основи' and 'Мультимедійні додатки' in things[i]:
+				elif 'Основи' in things[i] and 'Мультимедійні додатки' in things[i]:
 						things[i]=things[i][0:3]+' Какос'
 						text=text+numb[i]+' пара ' +'('+time[i]+')'+'\n'+things[i]+'\n\n'
 				elif 'Основи' in things[i]:
@@ -80,18 +80,18 @@ markup.row('Рулетка 🎰')
 def start(message):
 	now= datetime.datetime.now()
 	bot.send_message(message.chat.id,'А ось і розклад', reply_markup=markup)
-	'''def clock(interval):
-		while True:
-			day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
-			weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
-			if now.hour==16:	
-				bot.send_message(message.chat.id,brous(day,'Шухєєєєр розклад на завтра \n'+weekDay))  
-			time.sleep(interval)  
-	
-	sec=60*60	
-	t = threading.Thread(target=clock, args=(sec,))
-	t.start()'''
 
+
+def sh(mes):
+	if mes:
+		yep='1 пара 8:30-9:50 \n 2 пара 10:05-11:25 \n 3 пара 11:55-13:15 \n 4 пара 13:30-14:50 \n 5 пара 15:05-16:25 \n 6 пара 16:40-18:00'
+		
+	else:
+		yep='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
+
+	return yep
+			
+boolik=True
 @bot.message_handler(content_types=["text"])
 def text(message):
 	now= datetime.datetime.now()
@@ -102,6 +102,8 @@ def text(message):
 	'менеджмент.': 'Гречаник Наталія Юріївна','обробка зображ.':'Косаревич Ростислав Ярославович','комп. математика.':'Костишин Любов Павлівна',
 	'паралельні. обчис.':'Горєлов Віталій Олевтинович','операційні. системи.':' Гейко Орест Ярославович'}
 	scheduleDay={'Понеділок':'Monday','Вівторок':'Tuesday','Середа':'Wednesday','Четвер':'Thursday','Пятниця':'Friday'}
+	schedule='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
+	global boolik
 	#teacher 
 	for i in dictt:
 		if i in message.text.lower():
@@ -125,16 +127,13 @@ def text(message):
 					except:
 						weekDay=datetime.datetime(now.year,now.month+1,1).strftime('%A')
 						day=str(dayNumb)+'.'+str(now.month+1)+'.'+str(now.year)	
-				
 	
 	if message.text=='⌛ Сьогодні':
 		day=str(now.day)+'.'+str(now.month)+'.'+str(now.year)
 		weekDay=datetime.datetime(now.year,now.month,now.day).strftime('%A')
 		bot.send_message(message.chat.id,brous(day,weekDay))
 	#schedule 		
-	if message.text=='🕐 Дзвінки':
-		schedule='1 пара 9:00-10:20 \n 2 пара 10:30-11:50 \n 3 пара 12:15-13:35 \n 4 пара 13:50-15:10 \n 5 пара 15:25-16:45 \n 6 пара 16:55-18:15'
-		bot.send_message(message.chat.id,schedule)			
+			
 	#Tomorrow schedule 
 	if message.text=='⏳ Завтра':
 		try:
@@ -164,7 +163,14 @@ def text(message):
 		days.row('Четвер')
 		days.row('Пятниця')
 		bot.send_message(message.chat.id,'Виберіть день',reply_markup=days)	
+		
+	if message.text=="/Дзвінки" and message.from_user.username=='jokerwoow':
+		 boolik = not boolik
 
+		
+	if message.text=='🕐 Дзвінки':
+		
+		bot.send_message(message.chat.id,sh(boolik))	
 
 	if message.text=='📅 Тиждень':
 		n=0
