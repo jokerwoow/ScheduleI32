@@ -9,10 +9,9 @@ import random
 TOKEN='519695376:AAGgB9LqmRsiGPyYnDSWNCbMXxJqxRFBHas'
 bot=telebot.TeleBot(TOKEN)
 
-#@bot.message_handler(content_types=["text"])
-#-226511191
-url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
 
+url = "http://asu.pnu.edu.ua/cgi-bin/timetable.cgi"
+                         
 def brous(day,weekDay):
 	try:
 		response = requests.post(url,data={'group':'ІНФ-32'.encode('cp1251'),'sdate':day,'btn btn-success':'true','faculty':'1002'})
