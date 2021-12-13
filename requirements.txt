@@ -8,7 +8,7 @@ chardet==3.0.4
 colorama==0.3.9
 cryptography==2.1.4
 idna==2.6
-lxml==4.1.1
+lxml==4.6.5
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
 pycparser==2.18
